@@ -1,0 +1,29 @@
+.main-panel {
+    background-color: #bebebe;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    color: #333333;
+    font-weight: bold;
+    font-size: 22px;
+    padding-bottom: 20px;
+}

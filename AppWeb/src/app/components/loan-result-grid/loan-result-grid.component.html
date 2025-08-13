@@ -1,0 +1,35 @@
+<table *ngIf="records.length">
+  <thead>
+    <tr>
+      <th>Data Competência</th>
+      <th>Valor de Empréstimo</th>
+      <th>Saldo Devedor</th>
+      <th>Consolidada</th>
+      <th>Total</th>
+      <th>Amortização</th>
+      <th>Saldo</th>
+      <th>Provisão</th>
+      <th>Juros Acumulados</th>
+      <th>Pago</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of records">
+      <td>{{ record.date | date: 'dd/MM/yyyy' }}</td>
+      <td>{{ record.loanValue | currency: 'BRL' }}</td>
+      <td>{{ record.debtorBalance | currency: 'BRL' }}</td>
+      <td>
+        <ng-container *ngIf="record.consolidated > 0; else zeroConsolidated">
+          {{ record.consolidated }}/{{ totalInstallments }}
+        </ng-container>
+        <ng-template #zeroConsolidated>0</ng-template>
+      </td>
+      <td>{{ record.total | currency: 'BRL' }}</td>
+      <td>{{ record.amortization | currency: 'BRL' }}</td>
+      <td>{{ record.balance | currency: 'BRL' }}</td>
+      <td>{{ record.provision | currency: 'BRL' }}</td>
+      <td>{{ record.accumulated | currency: 'BRL' }}</td>
+      <td>{{ record.payment | currency: 'BRL' }}</td>
+    </tr>
+  </tbody>
+</table>

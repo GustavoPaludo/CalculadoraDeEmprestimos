@@ -1,0 +1,10 @@
+<body class="main-panel">
+    <div class="container">
+        <div class="content">
+            <h2 class="title">Calculadora de Empréstimos</h2>
+            <app-loan-form (calculate)="onCalculate($event)"></app-loan-form>
+            <div *ngIf="loading">Calculando...</div>
+            <app-loan-result-grid [records]="records"></app-loan-result-grid>
+        </div>
+    </div>
+</body>

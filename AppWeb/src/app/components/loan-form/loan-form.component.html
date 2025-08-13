@@ -1,0 +1,67 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="loan-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label>
+        Data inicial:
+        <input type="date" formControlName="initialDate" />
+      </label>
+      <div *ngIf="form.get('initialDate')?.invalid && form.get('initialDate')?.touched" class="error">
+        Data inicial é obrigatória.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Data final:
+        <input type="date" formControlName="endDate" />
+      </label>
+      <div *ngIf="form.get('endDate')?.invalid && form.get('endDate')?.touched" class="error">
+        Data final é obrigatória.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Primeiro pagamento:
+        <input type="date" formControlName="firstPaymentDate" />
+      </label>
+      <div *ngIf="form.get('firstPaymentDate')?.invalid && form.get('firstPaymentDate')?.touched" class="error">
+        Primeiro pagamento é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Valor do empréstimo:
+        <input type="number" step="0.01" formControlName="loanValue" />
+      </label>
+      <div *ngIf="form.get('loanValue')?.invalid && form.get('loanValue')?.touched" class="error">
+        Valor do empréstimo deve ser maior que zero.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Taxa de juros (%):
+        <input type="number" step="0.01" formControlName="interestValue" />
+      </label>
+      <div *ngIf="form.get('interestValue')?.invalid && form.get('interestValue')?.touched" class="error">
+        Taxa de juros deve ser maior que zero.
+      </div>
+    </div>
+
+    <div class="form-group button-group">
+      <button type="submit" [disabled]="form.invalid">Calcular</button>
+    </div>
+  </div>
+
+  <div *ngIf="form.errors?.['endDateBeforeInitialDate']" class="error">
+    A data final deve ser maior que a data inicial.
+  </div>
+  <div *ngIf="form.errors?.['firstPaymentOutsideRange']" class="error">
+    O primeiro pagamento deve ser maior que a data inicial e menor que a data final.
+  </div>
+  <div *ngIf="form.errors?.['dateInvalid']" class="error">
+    Verifique se as datas foram inseridas corretamente.
+  </div>
+</form>
